@@ -98,6 +98,15 @@ CREATE TABLE food_delivery.reviews (
         REFERENCES food_delivery.restaurants(restaurant_id)
 );
 
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA food_delivery
+TO anon, authenticated;
+
+GRANT USAGE, SELECT
+ON ALL SEQUENCES IN SCHEMA food_delivery
+TO anon, authenticated;
+
+
 -- =====================================================
 -- 3. DATA INSERT
 -- =====================================================
