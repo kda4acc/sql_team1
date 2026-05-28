@@ -98,14 +98,19 @@ CREATE TABLE food_delivery.reviews (
         REFERENCES food_delivery.restaurants(restaurant_id)
 );
 
+ALTER ROLE authenticator SET pgrst.db_schemas = 'public, graphql_public, food_delivery';
+NOTIFY pgrst, 'reload config';
+NOTIFY pgrst, 'reload schema';
+
+GRANT USAGE ON SCHEMA food_delivery TO anon, authenticated, service_role;
+
 GRANT SELECT, INSERT, UPDATE, DELETE
 ON ALL TABLES IN SCHEMA food_delivery
-TO anon, authenticated;
+TO anon, authenticated, service_role;
 
 GRANT USAGE, SELECT
 ON ALL SEQUENCES IN SCHEMA food_delivery
-TO anon, authenticated;
-
+TO anon, authenticated, service_role;
 
 -- =====================================================
 -- 3. DATA INSERT
