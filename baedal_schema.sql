@@ -108,5 +108,12 @@ alter table food_delivery.drivers disable row level security;
 alter table food_delivery.deliveries disable row level security;
 alter table food_delivery.reviews disable row level security;
 
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON ALL TABLES IN SCHEMA food_delivery
+TO anon, authenticated;
+
+GRANT USAGE, SELECT
+ON ALL SEQUENCES IN SCHEMA food_delivery
+TO anon, authenticated;
 
 select 'food_delivery created' as message;
